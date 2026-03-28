@@ -11,42 +11,35 @@
         /* --- RESET & BASE --- */
         *, *::before, *::after { box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        body {
-            margin: 0;
-            font-family: 'Montserrat', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            color: #333;
-            line-height: 1.5;
-            background-color: #fff;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+        body { margin: 0; font-family: 'Montserrat', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #333; line-height: 1.5; background-color: #fff; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-        /* --- HEADER --- */
+        /* --- HEADER (STATIC - УЕЗЖАЕТ ПРИ ПРОКРУТКЕ) --- */
         header {
-            position: absolute;
-            top: 0;
-            left: 0;
+            position: static; /* Шапка в потоке документа, прокручивается вверх */
             width: 100%;
             z-index: 1000;
-            padding: 20px 0;
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+            padding: 15px 0;
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
         }
         .header-flex {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        .logo-wrap {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            text-decoration: none;
-            color: #2c3e50;
+        
+        /* Mobile Header Styles */
+        @media (max-width: 768px) {
+            .header-flex {
+                flex-direction: column; /* Колонкой на мобильном */
+                gap: 10px;
+            }
+            .header-phone { text-align: center; }
+            .logo-wrap { justify-content: center; }
         }
+
+        .logo-wrap { display: flex; align-items: center; gap: 15px; text-decoration: none; color: #2c3e50; }
         .logo-img { height: 50px; border-radius: 50%; object-fit: cover; }
         .logo-text { font-weight: 700; font-size: 1.1rem; letter-spacing: 0.5px; text-transform: uppercase; }
         .header-phone { text-align: right; }
@@ -55,603 +48,518 @@
 
         /* --- HERO SECTION --- */
         .hero {
-            padding-top: 120px;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding-top: 20px; /* Небольшой отступ для красоты */
             padding-bottom: 60px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
         }
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-        }
+        .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
         @media (max-width: 768px) {
             .hero-grid { grid-template-columns: 1fr; text-align: center; }
         }
-        
         .hero-content h1 { font-size: 2.5rem; line-height: 1.2; margin: 0 0 15px 0; color: #2c3e50; }
-        .collection-badge {
-            display: inline-block;
-            background: #000; color: #fff;
-            padding: 5px 15px; border-radius: 20px;
-            font-size: 0.8rem; margin-bottom: 20px;
-            text-transform: uppercase; letter-spacing: 1px;
-        }
+        .collection-badge { display: inline-block; background: #000; color: #fff; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
         
         /* Price Block */
-        .price-main-block {
-            margin: 30px 0;
-            background: #fff; padding: 25px;
-            border-radius: 15px;
-            display: inline-block;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
+        .price-main-block { margin: 30px 0; background: #fff; padding: 25px; border-radius: 15px; display: inline-block; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
         .price-label { font-size: 0.9rem; color: #7f8c8d; text-transform: uppercase; }
         .price-value { font-size: 2.8rem; font-weight: 800; color: #d35400; }
         .price-sub { font-size: 0.9rem; color: #555; margin-top: 5px; }
         
-        /* Action Block: Button + See Also */
-        .action-block {
-            display: flex;
-            align-items: flex-start; /* Выравнивание по верху */
-            gap: 30px;
-            margin-top: 20px;
-            flex-wrap: wrap;
-        }
-        
-        .cta-btn {
-            display: inline-block;
-            background: #0056b3; color: white;
-            padding: 18px 40px; font-size: 1.1rem; font-weight: 600;
-            border-radius: 50px; text-decoration: none;
-            transition: all 0.3s;
-            box-shadow: 0 5px 15px rgba(0, 86, 179, 0.3);
-            white-space: nowrap; /* Кнопка не переносится */
-            height: fit-content;
-        }
+        /* Action Block */
+        .action-block { display: flex; align-items: flex-start; gap: 30px; margin-top: 20px; flex-wrap: wrap; }
+        .cta-btn { display: inline-block; background: #0056b3; color: white; padding: 18px 40px; font-size: 1.1rem; font-weight: 600; border-radius: 50px; text-decoration: none; transition: all 0.3s; box-shadow: 0 5px 15px rgba(0, 86, 179, 0.3); white-space: nowrap; height: fit-content; }
         .cta-btn:hover { background: #004494; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0, 86, 179, 0.4); }
 
         /* See Also Block */
-        .see-also-block {
-            flex-grow: 1;
-            min-width: 200px;
-        }
-        .see-also-title {
-            font-size: 0.8rem;
-            color: #7f8c8d;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
-        }
-        .see-also-items {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-        .see-also-item {
-            width: 70px;
-            height: 70px;
-            border-radius: 8px;
-            overflow: hidden;
-            border: 2px solid transparent;
-            transition: all 0.3s;
-            position: relative;
-        }
-        .see-also-item:hover {
-            border-color: #0056b3;
-            transform: translateY(-2px);
-        }
-        .see-also-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .see-also-item .tooltip {
-            visibility: hidden;
-            opacity: 0;
-            position: absolute;
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #333;
-            color: #fff;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.7rem;
-            white-space: nowrap;
-            margin-bottom: 5px;
-            transition: opacity 0.2s;
-        }
-        .see-also-item:hover .tooltip {
-            visibility: visible;
-            opacity: 1;
-        }
+        .see-also-block { flex-grow: 1; min-width: 200px; }
+        .see-also-title { font-size: 0.8rem; color: #7f8c8d; text-transform: uppercase; margin-bottom: 10px; letter-spacing: 1px; }
+        .see-also-items { display: flex; gap: 10px; flex-wrap: wrap; }
+        .see-also-item { width: 70px; height: 70px; border-radius: 8px; overflow: hidden; border: 2px solid transparent; transition: all 0.3s; position: relative; }
+        .see-also-item:hover { border-color: #0056b3; transform: translateY(-2px); }
+        .see-also-item img { width: 100%; height: 100%; object-fit: cover; }
+        .see-also-item .tooltip { visibility: hidden; opacity: 0; position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); background: #333; color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 0.7rem; white-space: nowrap; margin-bottom: 5px; transition: opacity 0.2s; }
+        .see-also-item:hover .tooltip { visibility: visible; opacity: 1; }
 
-        /* Gallery */
+        /* Gallery Container */
         .gallery-wrapper { position: relative; }
-        .main-photo {
-            width: 100%; border-radius: 15px;
+        
+        /* Main Photo Container with Arrows */
+        .main-photo-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            background: #f0f0f0;
+            border-radius: 15px;
+            overflow: hidden;
             box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .main-photo {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
             transition: opacity 0.3s;
         }
+
+        /* Navigation Arrows */
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.7);
+            color: #333;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            z-index: 10;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .nav-arrow:hover {
+            background: #fff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .nav-arrow.prev { left: 15px; }
+        .nav-arrow.next { right: 15px; }
+        
+        /* Thumbnails */
         .thumbs-strip { display: flex; gap: 10px; margin-top: 15px; justify-content: center; flex-wrap: wrap; }
         .thumb-img { width: 60px; height: 60px; object-fit: cover; border-radius: 8px; cursor: pointer; border: 2px solid transparent; transition: all 0.2s; }
         .thumb-img:hover, .thumb-img.active { border-color: #0056b3; }
 
         /* --- SECTIONS --- */
         section { padding: 80px 0; }
-        .section-title {
-            font-size: 2rem; margin-bottom: 40px; text-align: center;
-            font-weight: 700; position: relative;
-        }
-        .section-title::after {
-            content: ''; display: block; width: 60px; height: 4px;
-            background: #0056b3; margin: 15px auto 0; border-radius: 2px;
-        }
+        .section-title { font-size: 2rem; margin-bottom: 40px; text-align: center; font-weight: 700; position: relative; }
+        .section-title::after { content: ''; display: block; width: 60px; height: 4px; background: #0056b3; margin: 15px auto 0; border-radius: 2px; }
 
         /* Description & Specs */
         .desc-content { font-size: 1.1rem; color: #444; line-height: 1.8; white-space: pre-line; max-width: 900px; margin: 0 auto; }
         .specs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; max-width: 1100px; margin: 0 auto; }
-        .spec-card {
-            background: #fff; padding: 20px; border-radius: 10px;
-            border-left: 4px solid #0056b3;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
-            display: flex; justify-content: space-between; align-items: center;
-        }
+        .spec-card { background: #fff; padding: 20px; border-radius: 10px; border-left: 4px solid #0056b3; box-shadow: 0 5px 15px rgba(0,0,0,0.03); display: flex; justify-content: space-between; align-items: center; }
         .spec-name { font-weight: 600; color: #555; font-size: 0.9rem; padding-right: 10px; }
         .spec-val { font-weight: 700; color: #2c3e50; text-align: right; }
         
-        /* --- FOOTER (WHITE THEME) --- */
-        .footer-wrapper {
-            background: #ffffff;
-            color: #333;
-            padding-top: 0;
-            overflow: hidden;
-            border-top: 1px solid #eaeaea;
-        }
-
-        /* Partners Carousel */
-        .partners-section {
-            background: #f9f9f9;
-            padding: 30px 0;
-            border-bottom: 1px solid #eaeaea;
-        }
-        .partners-title {
-            text-align: center;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #999;
-            font-size: 0.9rem;
-            margin-bottom: 20px;
-        }
+        /* --- FOOTER --- */
+        .footer-wrapper { background: #ffffff; color: #333; padding-top: 0; overflow: hidden; border-top: 1px solid #eaeaea; }
+        .partners-section { background: #f9f9f9; padding: 30px 0; border-bottom: 1px solid #eaeaea; }
+        .partners-title { text-align: center; text-transform: uppercase; letter-spacing: 2px; color: #999; font-size: 0.9rem; margin-bottom: 20px; }
         .carousel-container { width: 100%; overflow: hidden; }
         .carousel-track { display: flex; width: max-content; animation: scroll 20s linear infinite; }
-        .carousel-slide-link {
-            display: flex; align-items: center; justify-content: center;
-            padding: 0 40px; height: 60px; text-decoration: none;
-        }
-        .carousel-slide-link img {
-            max-height: 40px; max-width: 120px;
-            filter: grayscale(100%); opacity: 0.6; transition: all 0.3s;
-        }
+        .carousel-slide-link { display: flex; align-items: center; justify-content: center; padding: 0 40px; height: 60px; text-decoration: none; }
+        .carousel-slide-link img { max-height: 40px; max-width: 120px; filter: grayscale(100%); opacity: 0.6; transition: all 0.3s; }
         .carousel-slide-link:hover img { filter: none; opacity: 1; }
-        
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* Collections Menu */
         .footer-menu { background: #fff; padding: 40px 0; border-bottom: 1px solid #eaeaea; }
         .menu-grid { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; }
-        .menu-link {
-            color: #333; text-decoration: none; padding: 10px 20px;
-            border: 1px solid #ddd; border-radius: 4px; transition: all 0.3s;
-            font-size: 0.9rem; text-transform: uppercase;
-        }
+        .menu-link { color: #333; text-decoration: none; padding: 10px 20px; border: 1px solid #ddd; border-radius: 4px; transition: all 0.3s; font-size: 0.9rem; text-transform: uppercase; }
         .menu-link:hover, .menu-link.active { background: #0056b3; color: #fff; border-color: #0056b3; }
 
-        /* Contacts & Map */
         .footer-contacts-section { padding: 60px 0; background: #fff; }
         .footer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
         @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr; } }
-        .map-box {
-            border-radius: 10px; overflow: hidden; height: 300px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid #eee;
-        }
+        .map-box { border-radius: 10px; overflow: hidden; height: 300px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid #eee; }
         .map-box iframe { width: 100%; height: 100%; border: none; }
-        
-        .contacts-box {
-            display: flex; flex-direction: column; justify-content: center; padding-left: 40px;
-        }
-        @media (max-width: 768px) {
-            .contacts-box { padding-left: 0; padding-top: 20px; align-items: center; text-align: center; }
-        }
-        
+        .contacts-box { display: flex; flex-direction: column; justify-content: center; padding-left: 40px; }
+        @media (max-width: 768px) { .contacts-box { padding-left: 0; padding-top: 20px; align-items: center; text-align: center; } }
         .footer-logo { height: 70px; width: auto; margin-bottom: 20px; border-radius: 8px; object-fit: contain; background: #fff; }
-
         .contact-item { margin-bottom: 15px; color: #555; }
         .contact-item a { color: #000; text-decoration: none; font-size: 1.5rem; font-weight: 700; display: block; }
         .contact-item span { font-size: 0.9rem; color: #888; }
-        
-        .copyright {
-            text-align: center; padding: 20px; background: #f9f9f9;
-            color: #888; font-size: 0.8rem; border-top: 1px solid #eaeaea;
-        }
+        .copyright { text-align: center; padding: 20px; background: #f9f9f9; color: #888; font-size: 0.8rem; border-top: 1px solid #eaeaea; }
     </style>
 </head>
 <body>
-
-<header>
-    <div class="container header-flex">
-        <a href="#" class="logo-wrap">
-            <img src="https://nfloor.github.io/img/LOGO.jpg" alt="Logo" class="logo-img" onerror="this.style.display='none'">
-            <span class="logo-text">НАТУРАЛЬНЫЙ ПОЛ</span>
-        </a>
-        <div class="header-phone">
-            <a href="tel:+74957988887" class="phone-link">+7 495 798-88-87</a>
-            <div class="addr-text">Москва, Сущевский вал д.5с3 БЦ РБС, офис 202</div>
-        </div>
-    </div>
-</header>
-
-<!-- HERO SECTION -->
-<section class="hero">
-    <div class="container hero-grid">
-        <div class="hero-content">
-            <div class="collection-badge">Коллекция: HERRINGBONE 60x10</div>
-            <h1>Ламинат для пола елочка влагостойкий 33 класс 60х10см 32шт, Дуб португальский светло-коричневый</h1>
-            
-            <div class="price-main-block">
-                <div class="price-label">Цена за упаковку</div>
-                <div class="price-value">4 081 ₽</div>
-                <div class="price-sub">1 924 ₽ / м² | В упаковке: 1.8 м²</div>
+    <!-- HEADER -->
+    <header>
+        <div class="container header-flex">
+            <a href="index.html" class="logo-wrap">
+                <img src="https://nfloor.github.io/img/LOGO.jpg" alt="Logo" class="logo-img" onerror="this.style.display='none'">
+                <span class="logo-text">НАТУРАЛЬНЫЙ ПОЛ</span>
+            </a>
+            <div class="header-phone">
+                <a href="tel:+74957988887" class="phone-link">+7 495 798-88-87</a>
+                <div class="addr-text">Москва, Сущевский вал д.5с3 БЦ РБС, офис 202</div>
             </div>
-            
-            <!-- Блок с кнопкой и рекомендациями -->
-            <div class="action-block">
-                <a href="tel:+74957988887" class="cta-btn">Заказать по телефону</a>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <div class="collection-badge">Коллекция: HERRINGBONE 60x10</div>
+                <h1>Ламинат для пола елочка влагостойкий 33 класс 60х10см 32шт, Дуб португальский светло-коричневый</h1>
                 
-                
-                <div class="see-also-block">
-                    <div class="see-also-title">Смотрите также</div>
-                    <div class="see-also-items">
-                        
-                        <a href="https://nfloor.github.io/dub-ispanskiy-naturalnyy-2712673897.html" class="see-also-item" title="Ламинат для пола елочка влагостойкий 33 класс 60х10см 32шт, Дуб испанский натуральный">
-                            <span class="tooltip">Ламинат для пола елочка влагостойкий 33 класс 60х10см 32шт, Дуб испанский натуральный</span>
-                            <img src="https://nfloor.github.io/2712673897/1.webp" alt="Ламинат для пола елочка влагостойкий 33 класс 60х10см 32шт, Дуб испанский натуральный">
-                        </a>
-                        
-                        <a href="https://nfloor.github.io/dub-italyanskiy-nasyschennyy-2712674881.html" class="see-also-item" title="Ламинат для пола елочка влагостойкий 33 класс 60х10см 32шт, Дуб итальянский насыщенный">
-                            <span class="tooltip">Ламинат для пола елочка влагостойкий 33 класс 60х10см 32шт, Дуб итальянский насыщенный</span>
-                            <img src="https://nfloor.github.io/2712674881/1.webp" alt="Ламинат для пола елочка влагостойкий 33 класс 60х10см 32шт, Дуб итальянский насыщенный">
-                        </a>
-                        
-                        <a href="https://nfloor.github.io/dub-kubinskiy-svetlo-korichnevyy-2712674932.html" class="see-also-item" title="Ламинат для пола елочка влагостойкий 33 класс 60х10см 32шт, Дуб кубинский светло-коричневый">
-                            <span class="tooltip">Ламинат для пола елочка влагостойкий 33 класс 60х10см 32шт, Дуб кубинский светло-коричневый</span>
-                            <img src="https://nfloor.github.io/2712674932/1.webp" alt="Ламинат для пола елочка влагостойкий 33 класс 60х10см 32шт, Дуб кубинский светло-коричневый">
-                        </a>
-                        
-                        <a href="https://nfloor.github.io/dub-turetskiy-karamelnyy-2712678704.html" class="see-also-item" title="Ламинат для пола елочка влагостойкий 33 класс 60х10см 32шт, Дуб турецкий карамельный">
-                            <span class="tooltip">Ламинат для пола елочка влагостойкий 33 класс 60х10см 32шт, Дуб турецкий карамельный</span>
-                            <img src="https://nfloor.github.io/2712678704/1.webp" alt="Ламинат для пола елочка влагостойкий 33 класс 60х10см 32шт, Дуб турецкий карамельный">
-                        </a>
-                        
-                    </div>
+                <div class="price-main-block">
+                    <div class="price-label">Цена за упаковку</div>
+                    <div class="price-value">4 081 ₽</div>
+                    <div class="price-sub">1 924 ₽ / м² | В упаковке: 1.8 м²</div>
                 </div>
                 
+                <div class="action-block">
+                    <a href="tel:+74957988887" class="cta-btn">Заказать по телефону</a>
+                    
+                    
+                    <div class="see-also-block">
+                        <div class="see-also-title">Смотрите также</div>
+                        <div class="see-also-items">
+                            
+                            <a href="https://nfloor.github.io/dub-ispanskiy-naturalnyy-2712673897.html" class="see-also-item" title="Ламинат для пола елочка влагостойкий 33 класс 60х10см 32шт, Дуб испанский натуральный">
+                                <span class="tooltip">Ламинат для пола елочка влагостойкий 33 класс 60х10см 32шт, Дуб испанский натуральный</span>
+                                <img src="https://nfloor.github.io/2712673897/1.webp" alt="Ламинат для пола елочка влагостойкий 33 класс 60х10см 32шт, Дуб испанский натуральный">
+                            </a>
+                            
+                            <a href="https://nfloor.github.io/dub-italyanskiy-nasyschennyy-2712674881.html" class="see-also-item" title="Ламинат для пола елочка влагостойкий 33 класс 60х10см 32шт, Дуб итальянский насыщенный">
+                                <span class="tooltip">Ламинат для пола елочка влагостойкий 33 класс 60х10см 32шт, Дуб итальянский насыщенный</span>
+                                <img src="https://nfloor.github.io/2712674881/1.webp" alt="Ламинат для пола елочка влагостойкий 33 класс 60х10см 32шт, Дуб итальянский насыщенный">
+                            </a>
+                            
+                            <a href="https://nfloor.github.io/dub-kubinskiy-svetlo-korichnevyy-2712674932.html" class="see-also-item" title="Ламинат для пола елочка влагостойкий 33 класс 60х10см 32шт, Дуб кубинский светло-коричневый">
+                                <span class="tooltip">Ламинат для пола елочка влагостойкий 33 класс 60х10см 32шт, Дуб кубинский светло-коричневый</span>
+                                <img src="https://nfloor.github.io/2712674932/1.webp" alt="Ламинат для пола елочка влагостойкий 33 класс 60х10см 32шт, Дуб кубинский светло-коричневый">
+                            </a>
+                            
+                            <a href="https://nfloor.github.io/dub-turetskiy-karamelnyy-2712678704.html" class="see-also-item" title="Ламинат для пола елочка влагостойкий 33 класс 60х10см 32шт, Дуб турецкий карамельный">
+                                <span class="tooltip">Ламинат для пола елочка влагостойкий 33 класс 60х10см 32шт, Дуб турецкий карамельный</span>
+                                <img src="https://nfloor.github.io/2712678704/1.webp" alt="Ламинат для пола елочка влагостойкий 33 класс 60х10см 32шт, Дуб турецкий карамельный">
+                            </a>
+                            
+                        </div>
+                    </div>
+                    
+                </div>
             </div>
-        </div>
 
-        <div class="gallery-wrapper">
-            
-            <img id="mainImg" src="https://nfloor.github.io/2712674225/1.webp" alt="Ламинат для пола елочка влагостойкий 33 класс 60х10см 32шт, Дуб португальский светло-коричневый" class="main-photo">
-            
-            <div class="thumbs-strip">
+            <div class="gallery-wrapper">
                 
-                <img src="https://nfloor.github.io/2712674225/1.webp" class="thumb-img active" onclick="setImg(this, 'https://nfloor.github.io/2712674225/1.webp')" alt="Фото">
-                
-                <img src="https://nfloor.github.io/2712674225/2.webp" class="thumb-img " onclick="setImg(this, 'https://nfloor.github.io/2712674225/2.webp')" alt="Фото">
-                
-                <img src="https://nfloor.github.io/2712674225/3.webp" class="thumb-img " onclick="setImg(this, 'https://nfloor.github.io/2712674225/3.webp')" alt="Фото">
-                
-                <img src="https://nfloor.github.io/2712674225/4.webp" class="thumb-img " onclick="setImg(this, 'https://nfloor.github.io/2712674225/4.webp')" alt="Фото">
-                
-                <img src="https://nfloor.github.io/2712674225/5.webp" class="thumb-img " onclick="setImg(this, 'https://nfloor.github.io/2712674225/5.webp')" alt="Фото">
-                
-                <img src="https://nfloor.github.io/2712674225/6.webp" class="thumb-img " onclick="setImg(this, 'https://nfloor.github.io/2712674225/6.webp')" alt="Фото">
-                
-                <img src="https://nfloor.github.io/2712674225/7.webp" class="thumb-img " onclick="setImg(this, 'https://nfloor.github.io/2712674225/7.webp')" alt="Фото">
-                
-                <img src="https://nfloor.github.io/2712674225/8.webp" class="thumb-img " onclick="setImg(this, 'https://nfloor.github.io/2712674225/8.webp')" alt="Фото">
-                
-                <img src="https://nfloor.github.io/2712674225/9.webp" class="thumb-img " onclick="setImg(this, 'https://nfloor.github.io/2712674225/9.webp')" alt="Фото">
-                
-                <img src="https://nfloor.github.io/2712674225/10.webp" class="thumb-img " onclick="setImg(this, 'https://nfloor.github.io/2712674225/10.webp')" alt="Фото">
-                
-                <img src="https://nfloor.github.io/2712674225/11.webp" class="thumb-img " onclick="setImg(this, 'https://nfloor.github.io/2712674225/11.webp')" alt="Фото">
-                
-                <img src="https://nfloor.github.io/2712674225/12.webp" class="thumb-img " onclick="setImg(this, 'https://nfloor.github.io/2712674225/12.webp')" alt="Фото">
-                
-            </div>
-            
-            
-        </div>
-    </div>
-</section>
+                <div class="main-photo-container">
+                    <img id="mainImg" src="https://nfloor.github.io/2712674225/1.webp" alt="Ламинат для пола елочка влагостойкий 33 класс 60х10см 32шт, Дуб португальский светло-коричневый" class="main-photo">
+                    
+                    <!-- Стрелки навигации -->
+                    <button class="nav-arrow prev" onclick="changeSlide(-1)">&#10094;</button>
+                    <button class="nav-arrow next" onclick="changeSlide(1)">&#10095;</button>
+                </div>
 
-<!-- ОПИСАНИЕ -->
-<section class="desc-section">
-    <div class="container">
-        <h2 class="section-title">Описание</h2>
-        <div class="desc-content">Ламинат для пола елочка влагостойкий 60х10см, 32 шт – стиль, надежность и практичность для вашего интерьера!Размер панели – 600x100x8 мм, что идеально подходит для точной геометрической укладки. Упаковка содержит 32 планки – 1,92 м², вес – 13,1 кг. Поверхность – структурированная, матовая, с 4-сторонней фаской, что усиливает эффект натуральной доски, делая пол визуально более объемным и фактурным. Ламинат напольный – это лучшее решение для стильного, долговечного и практичного покрытия в жилых и коммерческих помещениях. Идеален для гостиных, спален, детских, прихожих, кухонь, кабинетов и офисов. Ламинат для пола с укладкой ёлочкой и современный дизайн под дуб – актуальный тренд, придающий интерьеру выразительность и ощущение уюта.Ламинат напольный влагостойкий толщиной 8 мм (или ламинат напольный 8 мм) изготовлен на прочной древесноволокнистой плите ХДФ, устойчивой к деформации. Благодаря обработке замков воском, ламинат 33 класс влагостойкий надежно защищён от влаги, что делает его отличным выбором для помещений с повышенной влажностью. Ламинат 33 класс обладает высокой износостойкостью и выдерживает интенсивную эксплуатацию. Подходит для использования с тёплыми полами (до +27°C). Поверхность с текстурой дуба делает ламинат максимально реалистичным и эстетичным. Укладка ламината ёлочкой визуально расширяет пространство и придаёт полу премиальный паркетный вид.Обновите интерьер стильно и легко – выберите ламинат напольный 33 класс влагостойкий, оформите заказ прямо сейчас и наслаждайтесь красотой, качеством и долговечностью вашего нового пола!</div>
-    </div>
-</section>
-
-<!-- ХАРАКТЕРИСТИКИ -->
-<section style="background: #f8f9fa;">
-    <div class="container">
-        <h2 class="section-title">Подробные характеристики</h2>
-        <div class="specs-grid">
-            
-            <div class="spec-card">
-                <span class="spec-name">Артикул</span>
-                <span class="spec-val">Дуб португальский светло-коричневый</span>
-            </div>
-            
-            <div class="spec-card">
-                <span class="spec-name">Тип</span>
-                <span class="spec-val">Ламинат</span>
-            </div>
-            
-            <div class="spec-card">
-                <span class="spec-name">Фаска</span>
-                <span class="spec-val">4 стороны</span>
-            </div>
-            
-            <div class="spec-card">
-                <span class="spec-name">Вид обработки</span>
-                <span class="spec-val">Браширование</span>
-            </div>
-            
-            <div class="spec-card">
-                <span class="spec-name">Имитация поверхности</span>
-                <span class="spec-val">Под дерево</span>
-            </div>
-            
-            <div class="spec-card">
-                <span class="spec-name">Материал основы</span>
-                <span class="spec-val">HDF</span>
-            </div>
-            
-            <div class="spec-card">
-                <span class="spec-name">Верхний слой</span>
-                <span class="spec-val">Меламин</span>
-            </div>
-            
-            <div class="spec-card">
-                <span class="spec-name">Толщина защитного слоя, мм</span>
-                <span class="spec-val">0.3</span>
-            </div>
-            
-            <div class="spec-card">
-                <span class="spec-name">Порода дерева</span>
-                <span class="spec-val">Орех</span>
-            </div>
-            
-            <div class="spec-card">
-                <span class="spec-name">Особенности ламината</span>
-                <span class="spec-val">Влагостойкость, Для теплого пола, Пропитка замка</span>
-            </div>
-            
-            <div class="spec-card">
-                <span class="spec-name">Плотность, кг/м3</span>
-                <span class="spec-val">820.0</span>
-            </div>
-            
-            <div class="spec-card">
-                <span class="spec-name">Класс износостойкости</span>
-                <span class="spec-val">33</span>
-            </div>
-            
-            <div class="spec-card">
-                <span class="spec-name">Вид пола</span>
-                <span class="spec-val">Замковый</span>
-            </div>
-            
-            <div class="spec-card">
-                <span class="spec-name">Число полос</span>
-                <span class="spec-val">Одна</span>
-            </div>
-            
-            <div class="spec-card">
-                <span class="spec-name">Тип замкового соединения</span>
-                <span class="spec-val">Click</span>
-            </div>
-            
-            <div class="spec-card">
-                <span class="spec-name">Кол-во кв.метров в коробке</span>
-                <span class="spec-val">1.8</span>
-            </div>
-            
-            <div class="spec-card">
-                <span class="spec-name">Длина, мм</span>
-                <span class="spec-val">600</span>
-            </div>
-            
-            <div class="spec-card">
-                <span class="spec-name">Ширина, мм</span>
-                <span class="spec-val">100</span>
-            </div>
-            
-            <div class="spec-card">
-                <span class="spec-name">Толщина, мм</span>
-                <span class="spec-val">8.0</span>
-            </div>
-            
-            <div class="spec-card">
-                <span class="spec-name">Количество упаковок, шт</span>
-                <span class="spec-val">1</span>
-            </div>
-            
-            <div class="spec-card">
-                <span class="spec-name">Количество в упаковке, шт</span>
-                <span class="spec-val">32</span>
-            </div>
-            
-            <div class="spec-card">
-                <span class="spec-name">Комплектация</span>
-                <span class="spec-val">1 упаковка ламината 1,92 м2, 32 шт</span>
-            </div>
-            
-            <div class="spec-card">
-                <span class="spec-name">Цвет</span>
-                <span class="spec-val">Дуб португальский светло-коричневый</span>
-            </div>
-            
-            <div class="spec-card">
-                <span class="spec-name">Гарантия</span>
-                <span class="spec-val">20 лет</span>
-            </div>
-            
-            <div class="spec-card">
-                <span class="spec-name">Страна-изготовитель</span>
-                <span class="spec-val">Китай</span>
-            </div>
-            
-            <div class="spec-card">
-                <span class="spec-name">Класс пожарной безопасности</span>
-                <span class="spec-val">КМ5</span>
-            </div>
-            
-            <div class="spec-card">
-                <span class="spec-name">Помещение</span>
-                <span class="spec-val">Для балкона, Для гостиной, Для детской, Для коридора/прихожей, Для кухни, Для офиса/кабинета, Для спальни</span>
-            </div>
-            
-        </div>
-    </div>
-</section>
-
-<!-- FOOTER -->
-<div class="footer-wrapper">
-    
-    <!-- Partners Carousel -->
-    <div class="partners-section">
-       
-        <div class="carousel-container">
-            <div class="carousel-track">
                 
+                <div class="thumbs-strip">
                     
-                    <a href="https://www.ozon.ru/seller/nfloor-2582910" target="_blank" title="OZON" class="carousel-slide-link">
-                        <img src="https://z-cdn-media.chatglm.cn/files/6c664f71-5f2c-44d4-9602-6728c851e6ba.jpeg?auth_key=1874683762-eedbc4ea9b3d44d6812f3a6dbe78077c-0-ea186ec479705bb77caea26b3d7eba26" alt="OZON">
-                    </a>
+                    <img src="https://nfloor.github.io/2712674225/1.webp" class="thumb-img active" onclick="setImg(0)" alt="Фото">
                     
-                    <a href="https://www.wildberries.ru/seller/4438471" target="_blank" title="Wildberries" class="carousel-slide-link">
-                        <img src="https://z-cdn-media.chatglm.cn/files/b697f0e3-8cae-48df-81ef-0a708973ac59.png?auth_key=1874683762-c18dc996ecc547aeb99cb427f0090a9d-0-36e7a4a80eae85922e5d738cc463aa08" alt="Wildberries">
-                    </a>
+                    <img src="https://nfloor.github.io/2712674225/2.webp" class="thumb-img " onclick="setImg(1)" alt="Фото">
                     
-                    <a href="https://lemanapro.ru/search/?q=novafloor" target="_blank" title="Лемана ПРО" class="carousel-slide-link">
-                        <img src="https://z-cdn-media.chatglm.cn/files/0b80c96d-3db2-4e19-8288-273ca27547ad.png?auth_key=1874683762-ee5a09a462d1429a8b1fb2a7c96f6c15-0-873eb60f9ec42d8dd37242ec66b2ddad" alt="Лемана ПРО">
-                    </a>
+                    <img src="https://nfloor.github.io/2712674225/3.webp" class="thumb-img " onclick="setImg(2)" alt="Фото">
                     
-                    <a href="#" target="_blank" title="2GIS" class="carousel-slide-link">
-                        <img src="https://z-cdn-media.chatglm.cn/files/88d87b99-0319-455e-a5ba-05db1ccd8af7.jpg?auth_key=1874683762-8a9769e64f924421a5e8074a859ab7b6-0-3813a67cf91bf18ebc0478632b31ca95" alt="2GIS">
-                    </a>
+                    <img src="https://nfloor.github.io/2712674225/4.webp" class="thumb-img " onclick="setImg(3)" alt="Фото">
                     
-                    <a href="#" target="_blank" title="Google Maps" class="carousel-slide-link">
-                        <img src="https://z-cdn-media.chatglm.cn/files/be743b12-0da6-4550-bed6-d86cbc0704be.png?auth_key=1874683762-f90e1410ca874fe49d00f8354127890a-0-e7d8e10dad06050dbd94f86fe9ee4e89" alt="Google Maps">
-                    </a>
+                    <img src="https://nfloor.github.io/2712674225/5.webp" class="thumb-img " onclick="setImg(4)" alt="Фото">
                     
-                    <a href="https://yandex.ru/maps/-/CHsWIQ7J" target="_blank" title="Partner" class="carousel-slide-link">
-                        <img src="https://z-cdn-media.chatglm.cn/files/712d4d84-24a1-4b0e-946a-73f2a364fed6.jpg?auth_key=1874683762-3871f8c780fb4086a4aa324b62561b68-0-e78dd05e454a10016bbd30b01d216d41" alt="Partner">
-                    </a>
+                    <img src="https://nfloor.github.io/2712674225/6.webp" class="thumb-img " onclick="setImg(5)" alt="Фото">
                     
+                    <img src="https://nfloor.github.io/2712674225/7.webp" class="thumb-img " onclick="setImg(6)" alt="Фото">
+                    
+                    <img src="https://nfloor.github.io/2712674225/8.webp" class="thumb-img " onclick="setImg(7)" alt="Фото">
+                    
+                    <img src="https://nfloor.github.io/2712674225/9.webp" class="thumb-img " onclick="setImg(8)" alt="Фото">
+                    
+                    <img src="https://nfloor.github.io/2712674225/10.webp" class="thumb-img " onclick="setImg(9)" alt="Фото">
+                    
+                    <img src="https://nfloor.github.io/2712674225/11.webp" class="thumb-img " onclick="setImg(10)" alt="Фото">
+                    
+                    <img src="https://nfloor.github.io/2712674225/12.webp" class="thumb-img " onclick="setImg(11)" alt="Фото">
+                    
+                </div>
                 
-                    
-                    <a href="https://www.ozon.ru/seller/nfloor-2582910" target="_blank" title="OZON" class="carousel-slide-link">
-                        <img src="https://z-cdn-media.chatglm.cn/files/6c664f71-5f2c-44d4-9602-6728c851e6ba.jpeg?auth_key=1874683762-eedbc4ea9b3d44d6812f3a6dbe78077c-0-ea186ec479705bb77caea26b3d7eba26" alt="OZON">
-                    </a>
-                    
-                    <a href="https://www.wildberries.ru/seller/4438471" target="_blank" title="Wildberries" class="carousel-slide-link">
-                        <img src="https://z-cdn-media.chatglm.cn/files/b697f0e3-8cae-48df-81ef-0a708973ac59.png?auth_key=1874683762-c18dc996ecc547aeb99cb427f0090a9d-0-36e7a4a80eae85922e5d738cc463aa08" alt="Wildberries">
-                    </a>
-                    
-                    <a href="https://lemanapro.ru/search/?q=novafloor" target="_blank" title="Лемана ПРО" class="carousel-slide-link">
-                        <img src="https://z-cdn-media.chatglm.cn/files/0b80c96d-3db2-4e19-8288-273ca27547ad.png?auth_key=1874683762-ee5a09a462d1429a8b1fb2a7c96f6c15-0-873eb60f9ec42d8dd37242ec66b2ddad" alt="Лемана ПРО">
-                    </a>
-                    
-                    <a href="#" target="_blank" title="2GIS" class="carousel-slide-link">
-                        <img src="https://z-cdn-media.chatglm.cn/files/88d87b99-0319-455e-a5ba-05db1ccd8af7.jpg?auth_key=1874683762-8a9769e64f924421a5e8074a859ab7b6-0-3813a67cf91bf18ebc0478632b31ca95" alt="2GIS">
-                    </a>
-                    
-                    <a href="#" target="_blank" title="Google Maps" class="carousel-slide-link">
-                        <img src="https://z-cdn-media.chatglm.cn/files/be743b12-0da6-4550-bed6-d86cbc0704be.png?auth_key=1874683762-f90e1410ca874fe49d00f8354127890a-0-e7d8e10dad06050dbd94f86fe9ee4e89" alt="Google Maps">
-                    </a>
-                    
-                    <a href="https://yandex.ru/maps/-/CHsWIQ7J" target="_blank" title="Partner" class="carousel-slide-link">
-                        <img src="https://z-cdn-media.chatglm.cn/files/712d4d84-24a1-4b0e-946a-73f2a364fed6.jpg?auth_key=1874683762-3871f8c780fb4086a4aa324b62561b68-0-e78dd05e454a10016bbd30b01d216d41" alt="Partner">
-                    </a>
-                    
                 
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Collections Menu -->
-    <div class="footer-menu">
+    <!-- DESCRIPTION -->
+    <section class="desc-section">
         <div class="container">
-            <div class="menu-grid">
-                
-                    <a href="#" class="menu-link ">NOVAFLOOR STEPPER</a>
-                
-                    <a href="#" class="menu-link ">NFLOOR LVT</a>
-                
-                    <a href="#" class="menu-link active">HERRINGBONE 60x10</a>
-                
-                    <a href="#" class="menu-link ">HERRINGBONE 12mm</a>
-                
-            </div>
+            <h2 class="section-title">Описание</h2>
+            <div class="desc-content">Ламинат для пола елочка влагостойкий 60х10см, 32 шт – стиль, надежность и практичность для вашего интерьера!Размер панели – 600x100x8 мм, что идеально подходит для точной геометрической укладки. Упаковка содержит 32 планки – 1,92 м², вес – 13,1 кг. Поверхность – структурированная, матовая, с 4-сторонней фаской, что усиливает эффект натуральной доски, делая пол визуально более объемным и фактурным. Ламинат напольный – это лучшее решение для стильного, долговечного и практичного покрытия в жилых и коммерческих помещениях. Идеален для гостиных, спален, детских, прихожих, кухонь, кабинетов и офисов. Ламинат для пола с укладкой ёлочкой и современный дизайн под дуб – актуальный тренд, придающий интерьеру выразительность и ощущение уюта.Ламинат напольный влагостойкий толщиной 8 мм (или ламинат напольный 8 мм) изготовлен на прочной древесноволокнистой плите ХДФ, устойчивой к деформации. Благодаря обработке замков воском, ламинат 33 класс влагостойкий надежно защищён от влаги, что делает его отличным выбором для помещений с повышенной влажностью. Ламинат 33 класс обладает высокой износостойкостью и выдерживает интенсивную эксплуатацию. Подходит для использования с тёплыми полами (до +27°C). Поверхность с текстурой дуба делает ламинат максимально реалистичным и эстетичным. Укладка ламината ёлочкой визуально расширяет пространство и придаёт полу премиальный паркетный вид.Обновите интерьер стильно и легко – выберите ламинат напольный 33 класс влагостойкий, оформите заказ прямо сейчас и наслаждайтесь красотой, качеством и долговечностью вашего нового пола!</div>
         </div>
-    </div>
+    </section>
 
-    <!-- Map & Contacts -->
-    <div class="footer-contacts-section">
+    <!-- SPECS -->
+    <section style="background: #f8f9fa;">
         <div class="container">
-            <div class="footer-grid">
-                <div class="map-box">
-                    <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A275c5b2da715e03fe9ff7c4ad13f63f6727820c5cc8561998183b7c8f6b91939&amp;source=constructor" frameborder="0"></iframe>
+            <h2 class="section-title">Подробные характеристики</h2>
+            <div class="specs-grid">
+                
+                <div class="spec-card">
+                    <span class="spec-name">Артикул</span>
+                    <span class="spec-val">Дуб португальский светло-коричневый</span>
                 </div>
-                <div class="contacts-box">
-                    <img src="https://nfloor.github.io/img/LOGO.jpg" alt="Logo" class="footer-logo" onerror="this.src='https://via.placeholder.com/150x70?text=NO+LOGO'">
+                
+                <div class="spec-card">
+                    <span class="spec-name">Тип</span>
+                    <span class="spec-val">Ламинат</span>
+                </div>
+                
+                <div class="spec-card">
+                    <span class="spec-name">Фаска</span>
+                    <span class="spec-val">4 стороны</span>
+                </div>
+                
+                <div class="spec-card">
+                    <span class="spec-name">Вид обработки</span>
+                    <span class="spec-val">Браширование</span>
+                </div>
+                
+                <div class="spec-card">
+                    <span class="spec-name">Имитация поверхности</span>
+                    <span class="spec-val">Под дерево</span>
+                </div>
+                
+                <div class="spec-card">
+                    <span class="spec-name">Материал основы</span>
+                    <span class="spec-val">HDF</span>
+                </div>
+                
+                <div class="spec-card">
+                    <span class="spec-name">Верхний слой</span>
+                    <span class="spec-val">Меламин</span>
+                </div>
+                
+                <div class="spec-card">
+                    <span class="spec-name">Толщина защитного слоя, мм</span>
+                    <span class="spec-val">0.3</span>
+                </div>
+                
+                <div class="spec-card">
+                    <span class="spec-name">Порода дерева</span>
+                    <span class="spec-val">Орех</span>
+                </div>
+                
+                <div class="spec-card">
+                    <span class="spec-name">Особенности ламината</span>
+                    <span class="spec-val">Влагостойкость, Для теплого пола, Пропитка замка</span>
+                </div>
+                
+                <div class="spec-card">
+                    <span class="spec-name">Плотность, кг/м3</span>
+                    <span class="spec-val">820.0</span>
+                </div>
+                
+                <div class="spec-card">
+                    <span class="spec-name">Класс износостойкости</span>
+                    <span class="spec-val">33</span>
+                </div>
+                
+                <div class="spec-card">
+                    <span class="spec-name">Вид пола</span>
+                    <span class="spec-val">Замковый</span>
+                </div>
+                
+                <div class="spec-card">
+                    <span class="spec-name">Число полос</span>
+                    <span class="spec-val">Одна</span>
+                </div>
+                
+                <div class="spec-card">
+                    <span class="spec-name">Тип замкового соединения</span>
+                    <span class="spec-val">Click</span>
+                </div>
+                
+                <div class="spec-card">
+                    <span class="spec-name">Кол-во кв.метров в коробке</span>
+                    <span class="spec-val">1.8</span>
+                </div>
+                
+                <div class="spec-card">
+                    <span class="spec-name">Длина, мм</span>
+                    <span class="spec-val">600</span>
+                </div>
+                
+                <div class="spec-card">
+                    <span class="spec-name">Ширина, мм</span>
+                    <span class="spec-val">100</span>
+                </div>
+                
+                <div class="spec-card">
+                    <span class="spec-name">Толщина, мм</span>
+                    <span class="spec-val">8.0</span>
+                </div>
+                
+                <div class="spec-card">
+                    <span class="spec-name">Количество упаковок, шт</span>
+                    <span class="spec-val">1</span>
+                </div>
+                
+                <div class="spec-card">
+                    <span class="spec-name">Количество в упаковке, шт</span>
+                    <span class="spec-val">32</span>
+                </div>
+                
+                <div class="spec-card">
+                    <span class="spec-name">Комплектация</span>
+                    <span class="spec-val">1 упаковка ламината 1,92 м2, 32 шт</span>
+                </div>
+                
+                <div class="spec-card">
+                    <span class="spec-name">Цвет</span>
+                    <span class="spec-val">Дуб португальский светло-коричневый</span>
+                </div>
+                
+                <div class="spec-card">
+                    <span class="spec-name">Гарантия</span>
+                    <span class="spec-val">20 лет</span>
+                </div>
+                
+                <div class="spec-card">
+                    <span class="spec-name">Страна-изготовитель</span>
+                    <span class="spec-val">Китай</span>
+                </div>
+                
+                <div class="spec-card">
+                    <span class="spec-name">Класс пожарной безопасности</span>
+                    <span class="spec-val">КМ5</span>
+                </div>
+                
+                <div class="spec-card">
+                    <span class="spec-name">Помещение</span>
+                    <span class="spec-val">Для балкона, Для гостиной, Для детской, Для коридора/прихожей, Для кухни, Для офиса/кабинета, Для спальни</span>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <div class="footer-wrapper">
+        <div class="partners-section">
+            
+            <div class="carousel-container">
+                <div class="carousel-track">
                     
-                    <div class="contact-item">
-                        <span>Телефон</span>
-                        <a href="tel:+74957988887">+7 495 798-88-87</a>
+                        
+                        <a href="https://www.ozon.ru/seller/nfloor-2582910" target="_blank" title="OZON" class="carousel-slide-link">
+                            <img src="https://z-cdn-media.chatglm.cn/files/6c664f71-5f2c-44d4-9602-6728c851e6ba.jpeg?auth_key=1874683762-eedbc4ea9b3d44d6812f3a6dbe78077c-0-ea186ec479705bb77caea26b3d7eba26" alt="OZON">
+                        </a>
+                        
+                        <a href="https://www.wildberries.ru/seller/4438471" target="_blank" title="Wildberries" class="carousel-slide-link">
+                            <img src="https://z-cdn-media.chatglm.cn/files/b697f0e3-8cae-48df-81ef-0a708973ac59.png?auth_key=1874683762-c18dc996ecc547aeb99cb427f0090a9d-0-36e7a4a80eae85922e5d738cc463aa08" alt="Wildberries">
+                        </a>
+                        
+                        <a href="https://lemanapro.ru/search/?q=novafloor" target="_blank" title="Лемана ПРО" class="carousel-slide-link">
+                            <img src="https://z-cdn-media.chatglm.cn/files/0b80c96d-3db2-4e19-8288-273ca27547ad.png?auth_key=1874683762-ee5a09a462d1429a8b1fb2a7c96f6c15-0-873eb60f9ec42d8dd37242ec66b2ddad" alt="Лемана ПРО">
+                        </a>
+                        
+                        <a href="#" target="_blank" title="2GIS" class="carousel-slide-link">
+                            <img src="https://z-cdn-media.chatglm.cn/files/88d87b99-0319-455e-a5ba-05db1ccd8af7.jpg?auth_key=1874683762-8a9769e64f924421a5e8074a859ab7b6-0-3813a67cf91bf18ebc0478632b31ca95" alt="2GIS">
+                        </a>
+                        
+                        <a href="#" target="_blank" title="Google Maps" class="carousel-slide-link">
+                            <img src="https://z-cdn-media.chatglm.cn/files/be743b12-0da6-4550-bed6-d86cbc0704be.png?auth_key=1874683762-f90e1410ca874fe49d00f8354127890a-0-e7d8e10dad06050dbd94f86fe9ee4e89" alt="Google Maps">
+                        </a>
+                        
+                        <a href="https://yandex.ru/maps/-/CHsWIQ7J" target="_blank" title="Partner" class="carousel-slide-link">
+                            <img src="https://z-cdn-media.chatglm.cn/files/712d4d84-24a1-4b0e-946a-73f2a364fed6.jpg?auth_key=1874683762-3871f8c780fb4086a4aa324b62561b68-0-e78dd05e454a10016bbd30b01d216d41" alt="Partner">
+                        </a>
+                        
+                    
+                        
+                        <a href="https://www.ozon.ru/seller/nfloor-2582910" target="_blank" title="OZON" class="carousel-slide-link">
+                            <img src="https://z-cdn-media.chatglm.cn/files/6c664f71-5f2c-44d4-9602-6728c851e6ba.jpeg?auth_key=1874683762-eedbc4ea9b3d44d6812f3a6dbe78077c-0-ea186ec479705bb77caea26b3d7eba26" alt="OZON">
+                        </a>
+                        
+                        <a href="https://www.wildberries.ru/seller/4438471" target="_blank" title="Wildberries" class="carousel-slide-link">
+                            <img src="https://z-cdn-media.chatglm.cn/files/b697f0e3-8cae-48df-81ef-0a708973ac59.png?auth_key=1874683762-c18dc996ecc547aeb99cb427f0090a9d-0-36e7a4a80eae85922e5d738cc463aa08" alt="Wildberries">
+                        </a>
+                        
+                        <a href="https://lemanapro.ru/search/?q=novafloor" target="_blank" title="Лемана ПРО" class="carousel-slide-link">
+                            <img src="https://z-cdn-media.chatglm.cn/files/0b80c96d-3db2-4e19-8288-273ca27547ad.png?auth_key=1874683762-ee5a09a462d1429a8b1fb2a7c96f6c15-0-873eb60f9ec42d8dd37242ec66b2ddad" alt="Лемана ПРО">
+                        </a>
+                        
+                        <a href="#" target="_blank" title="2GIS" class="carousel-slide-link">
+                            <img src="https://z-cdn-media.chatglm.cn/files/88d87b99-0319-455e-a5ba-05db1ccd8af7.jpg?auth_key=1874683762-8a9769e64f924421a5e8074a859ab7b6-0-3813a67cf91bf18ebc0478632b31ca95" alt="2GIS">
+                        </a>
+                        
+                        <a href="#" target="_blank" title="Google Maps" class="carousel-slide-link">
+                            <img src="https://z-cdn-media.chatglm.cn/files/be743b12-0da6-4550-bed6-d86cbc0704be.png?auth_key=1874683762-f90e1410ca874fe49d00f8354127890a-0-e7d8e10dad06050dbd94f86fe9ee4e89" alt="Google Maps">
+                        </a>
+                        
+                        <a href="https://yandex.ru/maps/-/CHsWIQ7J" target="_blank" title="Partner" class="carousel-slide-link">
+                            <img src="https://z-cdn-media.chatglm.cn/files/712d4d84-24a1-4b0e-946a-73f2a364fed6.jpg?auth_key=1874683762-3871f8c780fb4086a4aa324b62561b68-0-e78dd05e454a10016bbd30b01d216d41" alt="Partner">
+                        </a>
+                        
+                    
+                </div>
+            </div>
+        </div>
+        <div class="footer-menu">
+            <div class="container">
+                <div class="menu-grid">
+                    
+                        <a href="index.html#NOVAFLOOR-STEPPER" class="menu-link ">NOVAFLOOR STEPPER</a>
+                    
+                        <a href="index.html#NFLOOR-LVT" class="menu-link ">NFLOOR LVT</a>
+                    
+                        <a href="index.html#HERRINGBONE-60x10" class="menu-link active">HERRINGBONE 60x10</a>
+                    
+                        <a href="index.html#HERRINGBONE-12mm" class="menu-link ">HERRINGBONE 12mm</a>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="footer-contacts-section">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="map-box">
+                        <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A275c5b2da715e03fe9ff7c4ad13f63f6727820c5cc8561998183b7c8f6b91939&amp;source=constructor" frameborder="0"></iframe>
                     </div>
-                    <div class="contact-item">
-                        <span>Email</span>
-                        <a href="mailto:info@nfloor.ru" style="font-size: 1rem; font-weight: 400;">info@nfloor.ru</a>
-                    </div>
-                    <div class="contact-item">
-                        <span>Адрес шоурума</span>
-                        <div style="font-size: 1rem; color: #000;">Москва, Сущевский вал д.5с3 БЦ РБС, офис 202</div>
+                    <div class="contacts-box">
+                        <img src="https://nfloor.github.io/img/LOGO.jpg" alt="Logo" class="footer-logo" onerror="this.src='https://via.placeholder.com/150x70?text=NO+LOGO'">
+                        <div class="contact-item"><span>Телефон</span><a href="tel:+74957988887">+7 495 798-88-87</a></div>
+                        <div class="contact-item"><span>Email</span><a href="mailto:info@nfloor.ru" style="font-size: 1rem; font-weight: 400;">info@nfloor.ru</a></div>
+                        <div class="contact-item"><span>Адрес шоурума</span><div style="font-size: 1rem; color: #000;">Москва, Сущевский вал д.5с3 БЦ РБС, офис 202</div></div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="copyright">© 2024 НАТУРАЛЬНЫЙ ПОЛ. Все права защищены.</div>
     </div>
 
-    <div class="copyright">
-        © 2024 НАТУРАЛЬНЫЙ ПОЛ. Все права защищены.
-    </div>
-</div>
+    <script>
+        const images = ["https://nfloor.github.io/2712674225/1.webp", "https://nfloor.github.io/2712674225/2.webp", "https://nfloor.github.io/2712674225/3.webp", "https://nfloor.github.io/2712674225/4.webp", "https://nfloor.github.io/2712674225/5.webp", "https://nfloor.github.io/2712674225/6.webp", "https://nfloor.github.io/2712674225/7.webp", "https://nfloor.github.io/2712674225/8.webp", "https://nfloor.github.io/2712674225/9.webp", "https://nfloor.github.io/2712674225/10.webp", "https://nfloor.github.io/2712674225/11.webp", "https://nfloor.github.io/2712674225/12.webp"];
+        let currentIndex = 0;
 
-<script>
-    function setImg(el, url) {
-        document.getElementById('mainImg').src = url;
-        var thumbs = document.getElementsByClassName('thumb-img');
-        for(var i=0; i<thumbs.length; i++) thumbs[i].classList.remove('active');
-        el.classList.add('active');
-    }
-</script>
+        function updateImage() {
+            document.getElementById('mainImg').src = images[currentIndex];
+            var thumbs = document.getElementsByClassName('thumb-img');
+            for(var i=0; i<thumbs.length; i++) {
+                thumbs[i].classList.remove('active');
+                if(i == currentIndex) {
+                    thumbs[i].classList.add('active');
+                }
+            }
+        }
 
+        function setImg(index) {
+            currentIndex = index;
+            updateImage();
+        }
+
+        function changeSlide(direction) {
+            currentIndex += direction;
+            if (currentIndex >= images.length) {
+                currentIndex = 0;
+            } else if (currentIndex < 0) {
+                currentIndex = images.length - 1;
+            }
+            updateImage();
+        }
+    </script>
 </body>
 </html>
